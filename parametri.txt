@@ -1,0 +1,29 @@
+if (args[i].ToLower() == "-e" || args[i].ToLower() == "-endpoint" || args[i].ToLower() == "-url")
+                {
+                    endpoint = args[i + 1];
+                    i++;
+                }
+                else if (args[i].ToLower() == "-u" || args[i].ToLower() == "-user")
+                {
+                    username = args[i + 1];
+                    i++;
+                }
+                else if (args[i].ToLower() == "-p" || args[i].ToLower() == "-pass")
+                {
+                    password = args[i + 1];
+                    i++;
+                }
+                else if (args[i].ToLower() == "-a" || args[i].ToLower() == "-action")
+                {
+                    actionId = Convert.ToInt32(args[i + 1]);
+                    i++;
+                }
+                else if (args[i].ToLower() == "-s" || args[i].ToLower() == "-session")
+                {
+                    sessionId = Convert.ToInt32(args[i + 1]);
+                    i++;
+                }
+                else if (args[i].ToLower() == "-d" || args[i].ToLower() == "-debug")
+                {
+                    debug = true;
+                }

@@ -1,0 +1,140 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Configuration;
+using System.Windows.Forms;
+
+namespace Launcher.Models
+{
+    public class SvcSettings
+    {
+        #region Fields
+
+        private string nameText;
+        private string name;
+        private string endpointUrl;
+        private string endpointPort;
+        private string username;
+        private string password;
+        private bool debug;
+        private string debugAction;
+        private string debugSessionId;
+
+        #endregion
+
+        #region Properties
+
+        public string NameText
+        {
+            get { return nameText; }
+            set { nameText = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        /// <summary>
+        /// URL na kojem se nalazi wcf servis
+        /// </summary>
+        /// <example>
+        /// http://www.url.com
+        /// </example>
+        /// <value>
+        /// The endpoint URL.
+        /// </value>
+        public string EndpointUrl
+        {
+            get { return endpointUrl; }
+            set { endpointUrl = value; }
+        }
+
+        public string EndpointPort
+        {
+            get { return endpointPort; }
+            set { endpointPort = value; }
+        }
+
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        public bool Debug
+        {
+            get { return debug; }
+            set { debug = value; }
+        }
+
+        public string DebugAction
+        {
+            get { return debugAction; }
+            set { debugAction = value; }
+        }
+
+        public string DebugSessionId
+        {
+            get { return debugSessionId; }
+            set { debugSessionId = value; }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Saves Service data into app config...
+        /// </summary>
+        public void SaveSettings()
+        {
+            BindingList<SvcSettings> cs = new BindingList<SvcSettings>();
+
+        }
+
+        public static BindingList<SvcSettings> GetSettingsFromConfig()
+        {
+            BindingList<SvcSettings> list = new BindingList<SvcSettings>();
+            
+            try
+            {
+                NameValueCollection appSettingsSection = ConfigurationManager.GetSection("appSettings") as NameValueCollection;
+                
+                foreach (KeyValuePair<string,string> keyValue in appSettingsSection) //iz appconfiga u gridview
+                {
+                    string value = keyValue.ToString();
+                    string[] words = value.Split('|');
+
+                    SvcSettings s = new SvcSettings();
+                    s.nameText = words[0];
+                    s.name = words[1];
+                    s.endpointUrl = words[2];
+                    s.endpointPort = words[3];
+                    s.username = words[4];
+                    s.password = words[5];
+                    s.debug = Convert.ToBoolean(words[6]);
+                    s.debugAction = words[7];
+                    s.debugSessionId = words[8];
+                    list.Add(s);
+                }
+            }
+             catch (Exception ex) // nm: Exception se obicno naziva "e" ili "ex" 
+            //(znam da smo pricali da se to ne smije, ali postoje situacije 
+            //gdje su kratki nazivi ipak pozeljni - kada se koriste u 
+            //ogranicenom kratkom segmentu koda)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return list;
+        }
+        
+    }
+}

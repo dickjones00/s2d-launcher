@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    
+    
+  </configSections>
+  <appSettings>
+    <add key="test(S2d)" value="test|S2d_v2|http://192.168.111.111|99|inin|i|False|akcija|-"/>
+    <add key="test1(S2d)" value="test1|S2d_v2|http://192.168.111.122|399|inin|in|False|-|seansa"/>
+    <add key="test2(S2d)" value="test2|S2d_v2|http://192.168.111.133|299|inin|ini|False|-|-"/>
+    <add key="test3(S2d)" value="test3|S2d_v2|http://192.168.111.133|199|inin|inin|True|akcija|seansa"/>
+  </appSettings>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+</configuration>
